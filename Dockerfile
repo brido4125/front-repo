@@ -1,4 +1,4 @@
-FROM node:16 as builder
+FROM node:16-alpine as builder
 
 # 작업 폴더를 만들고 npm 설치
 WORKDIR /usr/src/app
@@ -21,4 +21,5 @@ COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
 # 80포트 오픈하고 nginx 실행
 EXPOSE 80
+EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
